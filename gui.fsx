@@ -37,3 +37,10 @@ let cleanText (text: string) =
 // this function count frequency of words
 let countWords (text: string) =
     text.Split([|' '; '\n'; '\t'; '\r'|], StringSplitOptions.RemoveEmptyEntries).Length
+
+let countSentences (text: string) =
+    // text.Split([|'.'; '!'; '?'|], StringSplitOptions.RemoveEmptyEntries).Length
+    let sentences = Regex.Split(text, @"(?<=[.!?])\s+") 
+    let filteredSentences = sentences |> Array.filter (fun s -> s.Trim().Length > 0)
+    filteredSentences.Length
+
