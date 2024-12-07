@@ -9,6 +9,7 @@ let loadTextFromFile (filePath: string) =
     with
     | ex -> sprintf "Error reading file: %s" ex.Message
 
+// this is user interface function to determine the method
 let getUserInput () =
     printfn "Choose input method: 1 - Direct Text, 2 - upload File using path"
     match Console.ReadLine() with
@@ -26,10 +27,13 @@ let getUserInput () =
     | _ -> 
         printfn "Invalid choice. Exiting."
         ""
+
+// this functoin to clean text from special character
 let cleanText (text: string) =
    // Keep "F#" as a special case and remove other punctuation
    let cleaned = Regex.Replace(text, @"[^\w\s#]", "")
    cleaned
 
+// this function count frequency of words
 let countWords (text: string) =
     text.Split([|' '; '\n'; '\t'; '\r'|], StringSplitOptions.RemoveEmptyEntries).Length
