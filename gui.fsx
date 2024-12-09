@@ -48,6 +48,7 @@ let countSentences (text: string) =
 let countParagraphs (text: string) =
     text.Split([|'\n'; '\r'|], StringSplitOptions.RemoveEmptyEntries).Length
 
+// Function to calculate word frequency
 let wordFrequency (text: string) =
     let words = Regex.Matches(text.ToLower(), @"\w+")
     words
