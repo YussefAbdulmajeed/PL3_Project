@@ -47,3 +47,11 @@ let countSentences (text: string) =
 // function to handle paragraph counting in text processing
 let countParagraphs (text: string) =
     text.Split([|'\n'; '\r'|], StringSplitOptions.RemoveEmptyEntries).Length
+
+let wordFrequency (text: string) =
+    let words = Regex.Matches(text.ToLower(), @"\w+")
+    words
+    |> Seq.cast<Match>
+    |> Seq.map (fun m -> m.Value)
+    |> Seq.countBy id
+    |> Seq.sortByDescending snd
