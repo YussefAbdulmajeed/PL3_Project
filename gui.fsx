@@ -44,3 +44,6 @@ let countSentences (text: string) =
     let filteredSentences = sentences |> Array.filter (fun s -> s.Trim().Length > 0)
     filteredSentences.Length
 
+// function to handle paragraph counting in text processing
+let countParagraphs (text: string) =
+    text.Split([|'\n'; '\r'|], StringSplitOptions.RemoveEmptyEntries).Length
