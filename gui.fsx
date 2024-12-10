@@ -56,6 +56,8 @@ let wordFrequency (text: string) =
     |> Seq.map (fun m -> m.Value)
     |> Seq.countBy id
     |> Seq.sortByDescending snd
+
+// // Function to measure readability (average sentence length)
 let averageSentenceLength (text: string) =
     let cleandText = cleanText text
     let wordCount = countWords cleandText
