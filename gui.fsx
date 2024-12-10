@@ -56,3 +56,10 @@ let wordFrequency (text: string) =
     |> Seq.map (fun m -> m.Value)
     |> Seq.countBy id
     |> Seq.sortByDescending snd
+let averageSentenceLength (text: string) =
+    let cleandText = cleanText text
+    let wordCount = countWords cleandText
+    let sentenceCount = countSentences text
+    if sentenceCount > 0 then float wordCount / float sentenceCount
+    else 0.0
+
