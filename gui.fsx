@@ -87,3 +87,6 @@ let main argv =
         printfn "No text provided."
     0
 
+// Call main explicitly for FSI
+main [||] |> ignore
+
