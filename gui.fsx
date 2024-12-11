@@ -77,3 +77,13 @@ let displayResults (text: string) =
    |> Seq.take 10
    |> Seq.iter (fun (word, count) -> printfn "%s: %d" word count)
    printfn "\nAverage Sentence Length: %.2f" (averageSentenceLength text)
+
+// function to handle user input to display results
+let main argv =
+    let text = getUserInput()
+    if not (String.IsNullOrWhiteSpace text) then
+        displayResults text
+    else
+        printfn "No text provided."
+    0
+
