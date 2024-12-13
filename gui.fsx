@@ -1,6 +1,8 @@
 open System
 open System.IO
 open System.Text.RegularExpressions
+open System.Windows.Forms
+open System.Drawing
 
 // Function to read text from a file
 let loadTextFromFile (filePath: string) =
@@ -46,15 +48,23 @@ let averageSentenceLength (text: string) =
     if sentenceCount > 0 then float wordCount / float sentenceCount
     else 0.0
 
-// fuction to display results
+// Function to display results
 let displayResults (text: string) =
-   printfn "Text Analysis Results:"
-   printfn "-----------------------"
-   printfn "Word count: %d" (countWords text)
-   printfn "Sentence count: %d" (countSentences text)
-   printfn "Paragraph count: %d" (countParagraphs text)
-   printfn "\nMost Frequent Words:"
-   wordFrequency text
-   |> Seq.take 10
-   |> Seq.iter (fun (word, count) -> printfn "%s: %d" word count)
-   printfn "\nAverage Sentence Length: %.2f" (averageSentenceLength text)
+    let results = 
+        [
+            sprintf "Word count: %d" (countWords text)
+            sprintf "Sentence count: %d" (countSentences text)
+            sprintf "Paragraph count: %d" (countParagraphs text)
+        ]
+    let wordFreq = wordFrequency text 
+                   |> Seq.take 10 
+                   |> Seq.map (fun (word, count) -> sprintf "%s: %d" word count) 
+                   |> String.concat "\n"
+    let avgSentenceLength = sprintf "Average Sentence Length: %.2f" (averageSentenceLength text)
+    
+    // Concatenate all results into one string
+    String.concat "\n" results + "\n\nMost Frequent Words:\n" + wordFreq + "\n" + avgSentenceLength
+
+// GUI function
+let createForm () =
+    let form = new Form(Text = "Text Analysis Tool", ClientSize = Size(600, 600),BackColor=Color.Black)
