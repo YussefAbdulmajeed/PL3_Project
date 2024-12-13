@@ -64,3 +64,7 @@ let displayResults (text: string) =
     
     // Concatenate all results into one string
     String.concat "\n" results + "\n\nMost Frequent Words:\n" + wordFreq + "\n" + avgSentenceLength
+
+// GUI function
+let createForm () =
+    let form = new Form(Text = "Text Analysis Tool", ClientSize = Size(600, 600),BackColor=Color.Black)
