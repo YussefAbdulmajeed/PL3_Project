@@ -1,6 +1,8 @@
 open System
 open System.IO
 open System.Text.RegularExpressions
+open System.Windows.Forms
+open System.Drawing
 
 // Function to read text from a file
 let loadTextFromFile (filePath: string) =
