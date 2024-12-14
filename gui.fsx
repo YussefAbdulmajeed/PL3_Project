@@ -99,3 +99,26 @@ let createForm () =
         ReadOnly = true, 
         Font = new Font("Arial", 14f)
     )
+
+// Button for file upload with updated functionality
+    uploadButton.Click.Add(fun _ -> 
+        let openFileDialog = new OpenFileDialog()
+        openFileDialog.Filter <- "Text files (.txt)|*.txt|Word documents (.docx)|*.docx|All files (*.*)|*.*" // Multiple types
+        openFileDialog.Title <- "Select a File"
+    
+        if openFileDialog.ShowDialog() = DialogResult.OK then
+            let filePath = openFileDialog.FileName
+            // Load the file's content based on its extension
+            let content = 
+                match Path.GetExtension(filePath).ToLower() with
+                | ".txt" -> loadTextFromFile filePath
+                | ".docx" -> 
+                    // Add support for reading .docx files (you will need to use a library like Open XML SDK or NPOI)
+                    "Word files not yet supported in this example"
+                | _ -> "File type not supported."
+        
+            // Display content or filename in the textbox
+            textBox.Text <- content // If it’s a txt file, it will display content
+            // Optionally, display just the file name:
+            // textBox.Text <- Path.GetFileName(filePath) 
+    )
