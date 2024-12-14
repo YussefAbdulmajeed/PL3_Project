@@ -194,4 +194,19 @@ let createForm () =
                            |> String.concat "\n"
             outputBox.Text <- "Most Frequent Words : \n " +  wordFreq
     )
+        // Button for average sentence length
+    avgSentenceLengthButton.Click.Add(fun _ -> 
+        let text = textBox.Text
+        if String.IsNullOrWhiteSpace(text) then
+            MessageBox.Show("No text provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) |> ignore
+        else
+            outputBox.Text <- sprintf "Average Sentence Length :   %.2f" (averageSentenceLength text)
+    )
+       // Button for clearing input and output
+    clearButton.Click.Add(fun _ ->
+        textBox.Text <- ""   // Clear input box
+        outputBox.Text <- "" // Clear output box
+    )
+
+
 
