@@ -122,3 +122,12 @@ let createForm () =
             // Optionally, display just the file name:
             // textBox.Text <- Path.GetFileName(filePath) 
     )
+
+    // Button for sentence count
+    sentenceCountButton.Click.Add(fun _ -> 
+        let text = textBox.Text
+        if String.IsNullOrWhiteSpace(text) then
+            MessageBox.Show("No text provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) |> ignore
+        else
+            outputBox.Text <- sprintf "Sentence count : %d" (countSentences text)
+    )
