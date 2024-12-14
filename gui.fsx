@@ -100,7 +100,7 @@ let createForm () =
         Font = new Font("Arial", 14f)
     )
 
-// Button for file upload with updated functionality
+    // Button for file upload with updated functionality
     uploadButton.Click.Add(fun _ -> 
         let openFileDialog = new OpenFileDialog()
         openFileDialog.Filter <- "Text files (.txt)|*.txt|Word documents (.docx)|*.docx|All files (*.*)|*.*" // Multiple types
