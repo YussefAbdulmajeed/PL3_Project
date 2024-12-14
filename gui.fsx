@@ -68,17 +68,34 @@ let displayResults (text: string) =
 // GUI function
 let createForm () =
     let form = new Form(Text = "Text Analysis Tool", ClientSize = Size(600, 600),BackColor=Color.Black)
-
-// Set the form to be maximized on startup
+    
+    // Set the form to be maximized on startup
     form.WindowState <- FormWindowState.Maximized
 
     // Create buttons and other controls
     let uploadButton = new Button(Text = "Upload File", Location = Point(20, 20), Size = Size(160, 50), BackColor = Color.CadetBlue, ForeColor = Color.Black)
     let analyzeButton = new Button(Text = "Analyze Text", Location = Point(200, 20), Size = Size(160, 50), BackColor = Color.CadetBlue, ForeColor = Color.Black)
     let clearButton = new Button(Text = "Clear", Location = Point(380, 20), Size = Size(160, 50), BackColor = Color.Red, ForeColor = Color.White)
-
     let wordCountButton = new Button(Text = "Word Count", Location = Point(20, 90), Size = Size(160, 50), BackColor = Color.LightSkyBlue, ForeColor = Color.Black)
     let sentenceCountButton = new Button(Text = "Sentence Count", Location = Point(200, 90), Size = Size(160, 50), BackColor = Color.LightSkyBlue, ForeColor = Color.Black)
     let paragraphCountButton = new Button(Text = "Paragraph Count", Location = Point(380, 90), Size = Size(160, 50), BackColor = Color.LightSkyBlue, ForeColor = Color.Black)
     let wordFreqButton = new Button(Text = "Word Frequency", Location = Point(560, 90), Size = Size(160, 50), BackColor = Color.LightSkyBlue, ForeColor = Color.Black)
     let avgSentenceLengthButton = new Button(Text = "Avg Sentence Length", Location = Point(740, 90), Size = Size(160, 50), BackColor = Color.LightSkyBlue, ForeColor = Color.Black)
+    
+    let textBox = new TextBox(
+        Text = "Input", 
+        Location = Point(20, 160), 
+        Size = Size(1100, 200), 
+        Multiline = true, 
+        ScrollBars = ScrollBars.Vertical, 
+        Font = new Font("Arial", 14f)
+    )
+    let outputBox = new TextBox(
+        Text = "Output", 
+        Location = Point(20, 380), 
+        Size = Size(540, 200), 
+        Multiline = true, 
+        ScrollBars = ScrollBars.Vertical, 
+        ReadOnly = true, 
+        Font = new Font("Arial", 14f)
+    )
