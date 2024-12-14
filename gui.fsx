@@ -208,5 +208,29 @@ let createForm () =
         outputBox.Text <- "" // Clear output box
     )
 
+    // Add controls to form
+    form.Controls.Add(uploadButton)
+    form.Controls.Add(analyzeButton)
+    form.Controls.Add(wordCountButton)
+    form.Controls.Add(sentenceCountButton)
+    form.Controls.Add(paragraphCountButton)
+    form.Controls.Add(wordFreqButton)
+    form.Controls.Add(avgSentenceLengthButton)
+    form.Controls.Add(textBox)
+    form.Controls.Add(outputBox)
+    form.Controls.Add(clearButton)
+    
+    form
+
+// Main entry point for the application
+[<STAThread>]
+do
+    Application.EnableVisualStyles()
+    Application.SetCompatibleTextRenderingDefault(false)
+    Application.Run(createForm())
+
+
+
+
 
 
