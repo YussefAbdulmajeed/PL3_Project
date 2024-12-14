@@ -124,10 +124,7 @@ let createForm () =
     )
 
     analyzeButton.Click.Add(fun _ ->
-        let text = textBox.Text
-        if String.IsNullOrWhiteSpace(text) then
-            MessageBox.Show("No text provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) |> ignore
-        else
+
             // Perform analysis
             let wordCount = countWords text
             let sentenceCount = countSentences text
@@ -166,5 +163,14 @@ let createForm () =
             MessageBox.Show("No text provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) |> ignore
         else
             outputBox.Text <- sprintf "Word count : %d" (countWords text)
+    )
+    
+    // Button for sentence count
+    sentenceCountButton.Click.Add(fun _ -> 
+        let text = textBox.Text
+        if String.IsNullOrWhiteSpace(text) then
+            MessageBox.Show("No text provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) |> ignore
+        else
+            outputBox.Text <- sprintf "Sentence count : %d" (countSentences text)
     )
 
