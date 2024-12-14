@@ -182,3 +182,16 @@ let createForm () =
             outputBox.Text <- sprintf "Paragraph count : %d" (countParagraphs text)
     )
 
+// Button for word frequency
+    wordFreqButton.Click.Add(fun _ -> 
+        let text = textBox.Text
+        if String.IsNullOrWhiteSpace(text) then
+            MessageBox.Show("No text provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) |> ignore
+        else
+            let wordFreq = wordFrequency text 
+                           |> Seq.take 10 
+                           |> Seq.map (fun (word, count) -> sprintf " %s : %d " word count) 
+                           |> String.concat "\n"
+            outputBox.Text <- "Most Frequent Words : \n " +  wordFreq
+    )
+
