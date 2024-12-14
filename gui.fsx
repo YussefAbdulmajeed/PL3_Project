@@ -123,6 +123,42 @@ let createForm () =
             // textBox.Text <- Path.GetFileName(filePath) 
     )
 
+    analyzeButton.Click.Add(fun _ ->
+        let text = textBox.Text
+        if String.IsNullOrWhiteSpace(text) then
+            MessageBox.Show("No text provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) |> ignore
+        else
+            // Perform analysis
+            let wordCount = countWords text
+            let sentenceCount = countSentences text
+            let paragraphCount = countParagraphs text
+            let avgSentenceLen = averageSentenceLength text
+            let freq = 
+                wordFrequency text
+                |> Seq.take 5 // Show top 5 words
+                |> Seq.map (fun (word, count) -> sprintf "  • %s: %d" word count) // Bullet points for words
+                |> String.concat "\n"
+
+            // Organize output with clear sections
+            let outputText =
+                sprintf
+                    """Text Analysis Report
+                    Word Count            : %d
+                    Sentence Count        : %d
+                    Paragraph Count       : %d
+                    Average Sentence Length: %.2f words/sentence
+                    Most Frequent Words:
+                    %s
+                    """
+                    wordCount
+                    sentenceCount
+                    paragraphCount
+                    avgSentenceLen
+                    freq
+            // Set the output text to the output box
+            outputBox.Text <- outputText
+    )
+    
     // Button for word count
     wordCountButton.Click.Add(fun _ -> 
         let text = textBox.Text
@@ -131,3 +167,4 @@ let createForm () =
         else
             outputBox.Text <- sprintf "Word count : %d" (countWords text)
     )
+
