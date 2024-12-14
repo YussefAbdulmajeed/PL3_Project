@@ -68,3 +68,24 @@ let displayResults (text: string) =
 // GUI function
 let createForm () =
     let form = new Form(Text = "Text Analysis Tool", ClientSize = Size(600, 600),BackColor=Color.Black)
+
+    
+    let textBox = new TextBox(
+        Text = "Input", 
+        Location = Point(20, 160), 
+        Size = Size(1100, 200), 
+        Multiline = true, 
+        ScrollBars = ScrollBars.Vertical, 
+        Font = new Font("Arial", 14f)
+    )
+    let outputBox = new TextBox(
+        Text = "Output", 
+        Location = Point(20, 380), 
+        Size = Size(540, 200), 
+        Multiline = true, 
+        ScrollBars = ScrollBars.Vertical, 
+        ReadOnly = true, 
+        Font = new Font("Arial", 14f)
+    )
+
+
