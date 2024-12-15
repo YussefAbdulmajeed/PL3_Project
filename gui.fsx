@@ -33,12 +33,16 @@ let countParagraphs (text: string) =
 
 // Function to calculate word frequency
 let wordFrequency (text: string) =
-    let words = Regex.Matches(text.ToLower(), @"\w+")
+    // Convert text to lowercase and split by spaces, tabs, and punctuation marks
+    let words = 
+        text.ToLower()
+        |> fun t -> t.Split([|' '; '\n'; '\t'; '\r'; '.'; ','; '!'; '?'; ';'; ':'|], StringSplitOptions.RemoveEmptyEntries)
+
+    // Count the occurrences of each word and sort by frequency in descending order
     words
-    |> Seq.cast<Match>
-    |> Seq.map (fun m -> m.Value)
     |> Seq.countBy id
     |> Seq.sortByDescending snd
+
 
 // // Function to measure readability (average sentence length)
 let averageSentenceLength (text: string) =
